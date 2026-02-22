@@ -1,0 +1,52 @@
+<mat-card class="todo-item" [class.completed]="todo.isCompleted">
+  <mat-card-content>
+    <div class="todo-header">
+      <mat-checkbox 
+        [checked]="todo.isCompleted" 
+        (change)="onToggle()"
+        color="primary">
+      </mat-checkbox>
+
+      <div class="todo-info">
+        <h3 [class.completed-text]="todo.isCompleted">{{ todo.title }}</h3>
+        <p *ngIf="todo.description" class="description">{{ todo.description }}</p>
+
+        <div class="todo-meta">
+          <!-- Badge de priorité -->
+          <span class="badge priority-badge" [class]="getPriorityClass()">
+            <mat-icon>flag</mat-icon>
+            {{ getPriorityLabel() }}
+          </span>
+
+          <!-- Badge de catégorie -->
+          <span class="badge category-badge" 
+                *ngIf="todo.categoryName"
+                [style.background-color]="todo.categoryColor">
+            {{ todo.categoryName }}
+          </span>
+
+          <!-- Date d'échéance -->
+          <span class="badge date-badge" *ngIf="todo.dueDate">
+            <mat-icon>event</mat-icon>
+            {{ todo.dueDate | date:'dd/MM/yyyy' }}
+          </span>
+
+          <!-- Date de création -->
+          <span class="badge created-badge">
+            <mat-icon>access_time</mat-icon>
+            {{ todo.createdAt | date:'dd/MM/yyyy' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="todo-actions">
+        <button mat-icon-button (click)="onEdit()" [disabled]="todo.isCompleted">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

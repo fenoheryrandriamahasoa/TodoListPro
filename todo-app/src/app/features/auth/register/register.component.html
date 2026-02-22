@@ -1,0 +1,61 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>TodoList Pro</h1>
+      <p>Créez votre compte</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom d'utilisateur</mat-label>
+        <input matInput formControlName="username" placeholder="JohnDoe">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="f['username'].hasError('required')">
+          Le nom d'utilisateur est requis
+        </mat-error>
+        <mat-error *ngIf="f['username'].hasError('minlength')">
+          Minimum 3 caractères
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="exemple@email.com">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="f['email'].hasError('required')">
+          L'email est requis
+        </mat-error>
+        <mat-error *ngIf="f['email'].hasError('email')">
+          Email invalide
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="f['password'].hasError('required')">
+          Le mot de passe est requis
+        </mat-error>
+        <mat-error *ngIf="f['password'].hasError('minlength')">
+          Minimum 6 caractères
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" 
+              [disabled]="registerForm.invalid || isLoading" class="full-width submit-btn">
+        <span *ngIf="!isLoading">S'inscrire</span>
+        <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+      </button>
+
+      <div class="auth-footer">
+        <p>Déjà un compte ? 
+          <a routerLink="/auth/login">Se connecter</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

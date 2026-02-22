@@ -1,0 +1,78 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="todo-form">
+  <div class="form-content">
+    <!-- Titre -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Titre</mat-label>
+      <input matInput formControlName="title" placeholder="Ex: Acheter du lait">
+      <mat-icon matPrefix>title</mat-icon>
+      <mat-error *ngIf="f['title'].hasError('required')">
+        Le titre est requis
+      </mat-error>
+      <mat-error *ngIf="f['title'].hasError('maxlength')">
+        Maximum 200 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description (optionnelle)</mat-label>
+      <textarea matInput formControlName="description" 
+                rows="4" 
+                placeholder="Détails de la tâche..."></textarea>
+      <mat-icon matPrefix>description</mat-icon>
+      <mat-error *ngIf="f['description'].hasError('maxlength')">
+        Maximum 1000 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-row">
+      <!-- Priorité -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Priorité</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let priority of priorities" [value]="priority.value">
+            <span [class]="'priority-badge priority-' + priority.value">
+              {{ priority.label }}
+            </span>
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>flag</mat-icon>
+      </mat-form-field>
+
+      <!-- Catégorie -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Catégorie (optionnelle)</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option [value]="null">Aucune</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            <span class="category-badge" [style.background-color]="category.color">
+              {{ category.name }}
+            </span>
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>label</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Date d'échéance -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date d'échéance (optionnelle)</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-icon matPrefix>event</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <button mat-button type="button" (click)="onCancel()" [disabled]="isLoading">
+      Annuler
+    </button>
+    <button mat-raised-button color="primary" type="submit" 
+            [disabled]="todoForm.invalid || isLoading">
+      <span *ngIf="!isLoading">{{ isEditMode ? 'Modifier' : 'Créer' }}</span>
+      <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+    </button>
+  </div>
+</form>

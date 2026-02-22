@@ -1,0 +1,85 @@
+<div class="todos-container">
+  <div class="todos-header">
+    <h1>Mes Tâches</h1>
+    <button mat-raised-button color="primary" (click)="onAddTodo()">
+      <mat-icon>add</mat-icon>
+      Nouvelle tâche
+    </button>
+  </div>
+
+  <!-- Barre de recherche et filtres -->
+  <div class="toolbar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Rechercher</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearch($event)" 
+             placeholder="Rechercher une tâche...">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-button-toggle-group [(value)]="currentFilter" (change)="onFilterChange($event.value)">
+      <mat-button-toggle value="all">
+        <mat-icon>list</mat-icon>
+        Toutes
+      </mat-button-toggle>
+      <mat-button-toggle value="pending">
+        <mat-icon>pending_actions</mat-icon>
+        En cours
+      </mat-button-toggle>
+      <mat-button-toggle value="completed">
+        <mat-icon>check_circle</mat-icon>
+        Terminées
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <!-- ✅ Utiliser async pipe -->
+  <ng-container *ngIf="isLoading$ | async; else todoContent">
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
+
+  <ng-template #todoContent>
+    <!-- Liste des tâches -->
+    <div class="todos-list" *ngIf="(filteredTodos$ | async) as filteredTodos">
+      <ng-container *ngIf="filteredTodos.length > 0; else emptyState">
+        <app-todo-item 
+          *ngFor="let todo of filteredTodos" 
+          [todo]="todo"
+          (toggle)="onToggleStatus($event)"
+          (edit)="onEditTodo($event)"
+          (delete)="onDeleteTodo($event)">
+        </app-todo-item>
+      </ng-container>
+    </div>
+
+    <!-- Message vide -->
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <mat-icon>inbox</mat-icon>
+        <h3>Aucune tâche trouvée</h3>
+        <p *ngIf="searchTerm">Essayez de modifier votre recherche</p>
+        <p *ngIf="!searchTerm && currentFilter === 'all'">Créez votre première tâche pour commencer</p>
+        <button mat-raised-button color="primary" (click)="onAddTodo()" *ngIf="!searchTerm">
+          <mat-icon>add</mat-icon>
+          Créer une tâche
+        </button>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>
+
+<!-- Modal Formulaire -->
+<div class="modal-overlay" *ngIf="showForm" (click)="onFormClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ editingTodo ? 'Modifier la tâche' : 'Nouvelle tâche' }}</h2>
+      <button mat-icon-button (click)="onFormClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <app-todo-form 
+      [todo]="editingTodo"
+      (close)="onFormClose()"
+      (save)="onFormSave()">
+    </app-todo-form>
+  </div>
+</div>

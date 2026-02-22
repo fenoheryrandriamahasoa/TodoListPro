@@ -1,0 +1,74 @@
+<!-- ✅ Utiliser async pipe -->
+<ng-container *ngIf="isLoading$ | async; else dashboardContent">
+  <app-loading-spinner></app-loading-spinner>
+</ng-container>
+
+<ng-template #dashboardContent>
+  <div class="dashboard-container" *ngIf="stats$ | async as stats">
+    <div class="dashboard-header">
+      <h1>Bienvenue, {{ currentUser?.username }} 👋</h1>
+      <p class="subtitle">Voici un aperçu de vos tâches</p>
+    </div>
+
+    <div class="stats-grid">
+      <mat-card class="stat-card total">
+        <mat-card-content>
+          <div class="stat-icon">
+            <mat-icon>assignment</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3>{{ stats.total }}</h3>
+            <p>Total des tâches</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card pending">
+        <mat-card-content>
+          <div class="stat-icon">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3>{{ stats.pending }}</h3>
+            <p>En cours</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card completed">
+        <mat-card-content>
+          <div class="stat-icon">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3>{{ stats.completed }}</h3>
+            <p>Terminées</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card urgent">
+        <mat-card-content>
+          <div class="stat-icon">
+            <mat-icon>priority_high</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3>{{ stats.highPriority }}</h3>
+            <p>Haute priorité</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="quick-actions">
+      <button mat-raised-button color="primary" routerLink="/todos">
+        <mat-icon>add</mat-icon>
+        Nouvelle tâche
+      </button>
+      <button mat-raised-button routerLink="/todos">
+        <mat-icon>list</mat-icon>
+        Voir toutes les tâches
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+.sidebar {
+  height: 100%;
+  background: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  padding-top: 8px;
+  transition: all 0.3s ease;
+
+  a {
+    margin: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(103, 126, 234, 0.1);
+    }
+
+    &.active {
+      background: rgba(103, 126, 234, 0.15);
+      color: #667eea;
+
+      mat-icon {
+        color: #667eea;
+      }
+    }
+
+    mat-icon {
+      margin-right: 16px;
+    }
+  }
+
+  &:not(.sidebar-open) {
+    span {
+      display: none;
+    }
+  }
+}
