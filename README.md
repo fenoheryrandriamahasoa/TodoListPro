@@ -1,4 +1,4 @@
-# 📝 TodoList Pro - Application Fullstack
+# TodoList Pro - Application Fullstack
 
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)
 ![Angular](https://img.shields.io/badge/Angular-19-DD0031?logo=angular)
@@ -10,32 +10,32 @@ Application moderne de gestion de tâches
 
 ---
 
-## 🎯 Fonctionnalités
+## Fonctionnalités
 
-### ✅ Backend (API .NET Core)
-- 🔐 **Authentification JWT** sécurisée
-- 👤 Gestion des utilisateurs (Register/Login/Logout)
-- ✏️ **CRUD complet** des tâches
-- 🏷️ Système de catégories
-- 🎨 **Niveaux de priorité** (Basse, Moyenne, Haute)
-- 📅 Dates d'échéance
-- 🔍 Filtres (tâches terminées, en cours, par priorité)
-- 📊 Dashboard avec statistiques en temps réel
-- 🛡️ Architecture Clean avec Repository Pattern
-- 📝 Documentation Swagger/OpenAPI
+### Backend (API .NET Core)
+-  **Authentification JWT** sécurisée
+-  Gestion des utilisateurs (Register/Login/Logout)
+-  **CRUD complet** des tâches
+-  Système de catégories
+-  **Niveaux de priorité** (Basse, Moyenne, Haute)
+-  Dates d'échéance
+-  Filtres (tâches terminées, en cours, par priorité)
+-  Dashboard avec statistiques en temps réel
+-  Architecture Clean avec Repository Pattern
+-  Documentation Swagger/OpenAPI
 
-### 🎨 Frontend (Angular)
-- 🖼️ Interface moderne et responsive (Angular Material)
-- 🔐 Authentification avec Guards et Interceptors
-- 📝 Formulaires réactifs avec validation
-- 🔄 Mise à jour en temps réel avec RxJS
-- 🎭 Animations fluides
-- 🌓 Design professionnel avec Material Design
-- 📱 Responsive (Mobile, Tablette, Desktop)
+###  Frontend (Angular)
+-  Interface moderne et responsive (Angular Material)
+-  Authentification avec Guards et Interceptors
+-  Formulaires réactifs avec validation
+-  Mise à jour en temps réel avec RxJS
+-  Animations fluides
+-  Design professionnel avec Material Design
+-  Responsive (Mobile, Tablette, Desktop)
 
 ---
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 ### Backend
 | Technologie | Version | Utilisation |
@@ -56,65 +56,26 @@ Application moderne de gestion de tâches
 | **RxJS** | 7.8 | Programmation réactive |
 | **SCSS** | - | Styles |
 
----
-
-## 📂 Structure du Projet
-TodoListPro/
-│
-├── 📁 TodoListPro.API/ # Backend .NET Core
-│ ├── Controllers/
-│ │ ├── AuthController.cs # Authentification
-│ │ ├── TodosController.cs # Gestion des tâches
-│ │ └── CategoriesController.cs # Gestion des catégories
-│ ├── Program.cs # Configuration de l'application
-│ └── appsettings.json # Configuration
-│
-├── 📁 TodoListPro.Core/ # Couche Domaine
-│ ├── Entities/ # Modèles de données
-│ ├── Interfaces/ # Contrats
-│ └── DTOs/ # Data Transfer Objects
-│
-├── 📁 TodoListPro.Infrastructure/ # Couche Infrastructure
-│ ├── Data/
-│ │ └── AppDbContext.cs # Contexte EF Core
-│ ├── Repositories/ # Implémentations Repository
-│ ├── Services/ # Services métier
-│ └── Migrations/ # Migrations de base de données
-│
-└── 📁 todo-app/ # Frontend Angular
-├── src/app/
-│ ├── core/ # Services singleton, Guards, Interceptors
-│ ├── shared/ # Composants réutilisables
-│ ├── features/ # Modules fonctionnels
-│ │ ├── auth/ # Authentification
-│ │ ├── dashboard/ # Tableau de bord
-│ │ └── todos/ # Gestion des tâches
-│ ├── layouts/ # Layouts (Header, Sidebar)
-│ └── models/ # Interfaces TypeScript
-└── src/environments/ # Configuration par environnement
-
-text
-
 
 ---
 
-## 🚀 Installation et Démarrage
+##  Installation et Démarrage
 
 ### Prérequis
-- ✅ **.NET 8 SDK** ou supérieur
-- ✅ **Node.js** 18+ et npm
-- ✅ **SQL Server Express** ou LocalDB
-- ✅ **Visual Studio 2022** / VS Code / Rider (optionnel)
-- ✅ **Git**
+-  **.NET 8 SDK** ou supérieur
+-  **Node.js** 18+ et npm
+-  **SQL Server Express** ou LocalDB
+-  **Visual Studio 2022** / VS Code / Rider (optionnel)
+-  **Git**
 
 ---
 
-### 1️⃣ Cloner le Repository
+### 1️ Cloner le Repository
 
 ```bash
 git clone https://github.com/VOTRE_USERNAME/TodoListPro.git
 cd TodoListPro
-2️⃣ Configuration du Backend
+2️ Configuration du Backend
 A. Configurer la Base de Données
 Modifie TodoListPro.API/appsettings.json :
 
@@ -138,7 +99,7 @@ L'API sera accessible sur : http://localhost:5124
 
 Documentation Swagger : http://localhost:5124/swagger
 
-3️⃣ Configuration du Frontend
+3️ Configuration du Frontend
 A. Installer les Dépendances
 Bash
 
@@ -159,7 +120,7 @@ Bash
 ng serve
 L'application sera accessible sur : http://localhost:4200
 
-📖 Utilisation
+Utilisation
 1. Inscription
 Ouvre http://localhost:4200
 Clique sur "S'inscrire"
@@ -180,12 +141,12 @@ Catégorie (optionnelle)
 Date d'échéance (optionnelle)
 Clique sur "Créer"
 4. Gérer les Tâches
-✅ Cocher une tâche pour la marquer comme terminée
-✏️ Cliquer sur "Modifier" pour éditer
-🗑️ Cliquer sur "Supprimer" pour effacer
-🔍 Utiliser la barre de recherche
-🎯 Filtrer par statut (Toutes, En cours, Terminées)
-🗄️ Modèle de Données
+ Cocher une tâche pour la marquer comme terminée
+ Cliquer sur "Modifier" pour éditer
+ Cliquer sur "Supprimer" pour effacer
+ Utiliser la barre de recherche
+ Filtrer par statut (Toutes, En cours, Terminées)
+ Modèle de Données
 User
 csharp
 
@@ -212,14 +173,14 @@ csharp
 - Id (int)
 - Name (string)
 - Color (string)
-🔒 Sécurité
-✅ Authentification JWT avec expiration
-✅ Hachage des mots de passe avec BCrypt
-✅ Protection CORS configurée
-✅ Validation des données côté client et serveur
-✅ Guards Angular pour protéger les routes
-✅ Interceptors HTTP pour gérer les tokens
-📊 API Endpoints
+ Sécurité
+ Authentification JWT avec expiration
+ Hachage des mots de passe avec BCrypt
+ Protection CORS configurée
+ Validation des données côté client et serveur
+ Guards Angular pour protéger les routes
+ Interceptors HTTP pour gérer les tokens
+ API Endpoints
 Authentication
 text
 
@@ -243,7 +204,7 @@ GET    /api/Categories         # Liste des catégories
 GET    /api/Categories/{id}    # Détail d'une catégorie
 POST   /api/Categories         # Créer une catégorie
 DELETE /api/Categories/{id}    # Supprimer une catégorie
-🧪 Tests
+Tests
 Tester l'API avec Swagger
 Lance le backend
 Ouvre http://localhost:5124/swagger
@@ -252,12 +213,12 @@ Inscris-toi via /api/Auth/register
 Copie le token reçu
 Entre Bearer {ton_token} dans Authorize
 Teste tous les endpoints
-📝 Roadmap / Améliorations Futures
- 📊 Dashboard avec graphiques Chart.js
- 🔔 Système de notifications
- 📄 Export PDF des tâches
- 🌓 Mode sombre
- ✅ Tests unitaires (xUnit + Jasmine)
- 🚀 Déploiement sur Azure
- 📱 Application mobile (Ionic)
- 🤖 Suggestions de tâches par IA
+Roadmap / Améliorations Futures
+  Dashboard avec graphiques Chart.js
+  Système de notifications
+  Export PDF des tâches
+  Mode sombre
+  Tests unitaires (xUnit + Jasmine)
+  Déploiement sur Azure
+  Application mobile (Ionic)
+  Suggestions de tâches par IA
